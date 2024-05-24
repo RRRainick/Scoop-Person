@@ -14,7 +14,11 @@
         }
     },
     "bin": "WinSW.exe",
-    "checkver": "github",
+    "checkver": {
+        "url": "https://api.github.com/repos/winsw/winsw/releases",
+        "jsonpath": "$.[?(@.prerelease==true)].tag_name",
+        "regex": "v([-\\d.\\w]+)"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
