@@ -16,7 +16,7 @@
     "post_install": [
         "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
         "    $neovide_path = \"$dir\\neovide.exe\".Replace('\\', '\\\\')",
-        "    $content = (Get-Content \"$bucketsdir\\main\\scripts\\neovide\\$_\").Replace('$neovide', $neovide_path)",
+        "    $content = (Get-Content \"$bucketsdir\\person\\scripts\\neovide\\$_\").Replace('$neovide', $neovide_path)",
         "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
         "    Set-Content \"$dir\\$_\" $content",
         "}",
