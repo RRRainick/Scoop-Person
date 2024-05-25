@@ -1,0 +1,55 @@
+{
+    "version": "0.13.1",
+    "description": "A simple GUI for Neovim",
+    "homepage": "https://neovide.dev",
+    "license": "MIT",
+    "notes": "Add Neovide as a context menu option by running: \"$dir\\install-context.reg\"",
+    "suggest": {
+        "neovim": "neovim"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/neovide/neovide/releases/download/0.13.1/neovide.exe.zip",
+            "hash": "bc398d10ff40db8d5231994691705d9ee0ddacad5ebf5d92b518885a0636aff1"
+        }
+    },
+    "post_install": [
+        "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+        "    $neovide_path = \"$dir\\neovide.exe\".Replace('\\', '\\\\')",
+        "    $content = (Get-Content \"$bucketsdir\\main\\scripts\\neovide\\$_\").Replace('$neovide', $neovide_path)",
+        "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+        "    Set-Content \"$dir\\$_\" $content",
+        "}",
+        "$config_dir = \"$env:APPDATA\\neovide\"",
+        "if (!(Test-Path $config_dir)) {",
+        "   New-Item -ItemType Directory $config_dir | Out-Null",
+        "}",
+        "if (Test-Path \"$persist_dir\\config.toml\")",
+        "   New-Item -ItemType HardLink -Path \"$config_dir\\config.toml\" -Value \"$persist_dir\\config.toml\"",
+        "}"
+    ],
+    "bin": "neovide.exe",
+    "shortcuts": [
+        [
+            "neovide.exe",
+            "Neovide"
+        ]
+    ],
+    "persist": [
+        "config.toml"
+    ],
+    "pre_uninstall": "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }",
+    "post_uninstall": [
+        "Remove-Item -Path \"$env:APPDATA\\neovide\" -Recurse"
+    ],
+    "checkver": {
+        "github": "https://github.com/neovide/neovide"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/neovide/neovide/releases/download/$version/neovide.exe.zip"
+            }
+        }
+    }
+}
