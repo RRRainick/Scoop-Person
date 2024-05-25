@@ -25,7 +25,7 @@
         "   New-Item -ItemType Directory $config_dir | Out-Null",
         "}",
         "if (Test-Path \"$persist_dir\\config.toml\") {",
-        "   New-Item -ItemType HardLink -Path \"$config_dir\\config.toml\" -Value \"$persist_dir\\config.toml\"",
+        "   New-Item -ItemType HardLink -Path \"$config_dir\\config.toml\" -Value \"$persist_dir\\neovide\\config.toml\"",
         "}"
     ],
     "bin": "neovide.exe",
