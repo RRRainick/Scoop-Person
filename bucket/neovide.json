@@ -24,7 +24,7 @@
         "if (!(Test-Path $config_dir)) {",
         "   New-Item -ItemType Directory $config_dir | Out-Null",
         "}",
-        "if (Test-Path \"$persist_dir\\config.toml\")",
+        "if (Test-Path \"$persist_dir\\config.toml\") {",
         "   New-Item -ItemType HardLink -Path \"$config_dir\\config.toml\" -Value \"$persist_dir\\config.toml\"",
         "}"
     ],
@@ -39,9 +39,7 @@
         "config.toml"
     ],
     "pre_uninstall": "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }",
-    "post_uninstall": [
-        "Remove-Item -Path \"$env:APPDATA\\neovide\" -Recurse"
-    ],
+    "post_uninstall": "Remove-Item -Path \"$env:APPDATA\\neovide\" -Recurse",
     "checkver": {
         "github": "https://github.com/neovide/neovide"
     },
