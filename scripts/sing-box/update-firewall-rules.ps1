@@ -1,4 +1,6 @@
-Remove-NetFirewallRule -Description "Work with Sing-Box." -ErrorAction SilentlyContinue
+Get-NetFirewallRule | Where-Object { $_.DisplayName -like "*sing-tun*" -or $_.DisplayName -eq "Sing-Box" } | ForEach-Object {
+    Remove-NetFirewallRule -Name $_.Name -ErrorAction SilentlyContinue
+}
 'TCP', 'UDP' | ForEach-Object {
     New-NetFirewallRule `
         -DisplayName "Sing-Box" `
