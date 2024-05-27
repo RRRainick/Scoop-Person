@@ -37,7 +37,7 @@
         "    Write-Host \"Successfully updated Windows firewall rules!\" -ForegroundColor Green",
         "} else {",
         "    Write-Host \"[ERROR] Failed updating Windows firewall rules!\" -ForegroundColor Red",
-        "}",
+        "}"
     ],
     "bin": "sing-box.exe",
     "persist": "config",

@@ -16,7 +16,7 @@
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\config.toml\")) {",
         "   New-Item \"$dir\\config.toml\" | Out-Null",
-        "}",
+        "}"
     ],
     "post_install": [
         "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
@@ -29,7 +29,7 @@
         "if (!(Test-Path $ConfigDir)) {",
         "   New-Item -ItemType Directory $ConfigDir | Out-Null",
         "}",
-        "New-Item -ItemType HardLink -Path \"$ConfigDir\\config.toml\" -Value \"$persist_dir\\config.toml\" | Out-Null",
+        "New-Item -ItemType HardLink -Path \"$ConfigDir\\config.toml\" -Value \"$persist_dir\\config.toml\" | Out-Null"
     ],
     "bin": "neovide.exe",
     "shortcuts": [
