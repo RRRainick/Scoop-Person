@@ -3,7 +3,10 @@
     "description": "A simple GUI for Neovim",
     "homepage": "https://neovide.dev",
     "license": "MIT",
-    "notes": "Add Neovide as a context menu option by running: \"$dir\\install-context.reg\"",
+    "notes": [
+        "Add Neovide as a context menu option by running:",
+        "'reg import \"$dir\\install-context.reg\"'"
+    ],
     "suggest": {
         "neovim": "neovim"
     },
