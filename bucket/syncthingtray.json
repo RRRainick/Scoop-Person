@@ -26,7 +26,7 @@
         "$config_dir = \"$env:APPDATA\"",
         "ensure $persist_dir",
         "if (!(Test-Path \"$persist_dir\\$config\")) { New-Item \"$persist_dir\\$config\" -ItemType File | Out-Null }",
-        "New-Item -ItemType HardLink -Path \"$config_dir\\config\" -Value \"$persist_dir\\$config\" | Out-Null"
+        "New-Item -ItemType HardLink -Path \"$config_dir\\$config\" -Value \"$persist_dir\\$config\" | Out-Null"
     ],
     "pre_uninstall": "Remove-Item -Path \"$env:APPDATA\\syncthingtray.ini\"",
     "bin": "syncthingtray-cli.exe",
