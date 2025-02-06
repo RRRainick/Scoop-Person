@@ -23,12 +23,9 @@
     "##": "syncthingtray.ini will recreate by syncthingtray.exe",
     "post_install": [
         "$config = \"syncthingtray.ini\"",
-        "$config_dir = \"$env:APPDATA\"",
         "ensure $persist_dir",
-        "if (!(Test-Path \"$persist_dir\\$config\")) { New-Item \"$persist_dir\\$config\" -ItemType File | Out-Null }",
-        "New-Item -ItemType HardLink -Path \"$config_dir\\$config\" -Value \"$persist_dir\\$config\" | Out-Null"
+        "if (!(Test-Path \"$persist_dir\\$config\")) { New-Item \"$persist_dir\\$config\" -ItemType File | Out-Null }"
     ],
-    "pre_uninstall": "Remove-Item -Path \"$env:APPDATA\\syncthingtray.ini\"",
     "bin": "syncthingtray-cli.exe",
     "shortcuts": [
         [
@@ -36,6 +33,7 @@
             "Syncthing Tray"
         ]
     ],
+    "persist": "syncthingtray.ini",
     "checkver": "github",
     "autoupdate": {
         "architecture": {
